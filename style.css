@@ -161,7 +161,6 @@ body {
     filter: brightness(1.2);
 }
 
-/* Responsive styles */
 @media (max-width: 480px) {
     .container {
         padding: 10px;
