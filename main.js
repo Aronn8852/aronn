@@ -1,5 +1,5 @@
 const statusMessage = document.querySelector('.status-message p');
-const games = ['mcstatus.hu', 'aronn.eu', 'turulcraft.hu', 'Aronn közössége', 'dc.aronn.eu'];
+const games = ['mcstatus.hu', 'aronn.hu', 'turulcraft.hu', 'Aronn közössége', 'dc.aronn.hu'];
 let currentGame = 0;
 let isTransitioning = false;
 
