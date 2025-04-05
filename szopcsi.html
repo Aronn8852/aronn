@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figyelmeztetés</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            font-family: 'Poppins', sans-serif;
+            animation: gradientBG 15s ease infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        .warning-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            margin: 20px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .warning-container:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #ff416c;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            border-radius: 2px;
+        }
+
+        p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #333;
+            margin-top: 2rem;
+            padding: 0 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .warning-container {
+                padding: 2rem;
+                margin: 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-container">
+        <h1>⚠️ FIGYELEM !!</h1>
+        <p>A(z) Aronn nukernek nincs free verziója ne is próbáld le szedni valahonnan. Legyen ez egy tanulság számodra.</p>
+    </div>
+</body>
+</html>
