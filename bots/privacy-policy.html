@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adatvédelmi Irányelvek - Aronn Botjai</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5865f2;
+            --primary-dark: #4752c4;
+            --secondary: #57f287;
+            --danger: #ed4245;
+            --warning: #faa61a;
+            --text-primary: #ffffff;
+            --text-secondary: #b9bbbe;
+            --bg-dark: #0f111a;
+            --bg-darker: #0a0c14;
+            --bg-card: rgba(30, 33, 43, 0.95);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+            min-height: 100vh;
+            padding: 40px 0;
+            color: var(--text-primary);
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(88, 101, 242, 0.15) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-card);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: var(--transition);
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-3px);
+        }
+
+        header {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.2) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .profile-picture {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 4px solid #2f3241;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .profile-picture:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            color: var(--text-primary);
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        h3 {
+            color: var(--text-secondary);
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .owner-info {
+            color: var(--text-primary);
+            font-size: 22px;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .owner-info::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            border-radius: 2px;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.2) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        h2 {
+            color: var(--text-primary);
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(114, 137, 218, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 i {
+            color: var(--primary);
+        }
+
+        p, li {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        li:before {
+            content: "•";
+            color: var(--primary);
+            font-size: 1.5em;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            margin-top: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 0;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .back-button {
+                top: 10px;
+                left: 10px;
+                font-size: 14px;
+            }
+
+            header {
+                padding: 30px 20px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .profile-picture {
+                width: 70px;
+                height: 70px;
+            }
+
+            .owner-info {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-picture {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="./" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        <span>Vissza</span>
+    </a>
+    <div class="container">
+        <header>
+            <h1>Adatvédelmi Irányelvek</h1>
+            <div class="profile-section">
+                <img class="profile-picture" src="../aronn.png" alt="Profilkép">
+                <div class="owner-info">Aronn (.aronn.)</div>
+                <h3>dc.aronn.hu</h3>
+            </div>
+        </header>
+
+        <div class="section">
+            <h2><i class="fas fa-book-open"></i> 1. Bevezetés</h2>
+            <p>Ez az adatvédelmi nyilatkozat részletezi, hogyan gyűjtjük és kezeljük az adatokat az Aronn (.aronn.) által fejlesztett Discord botoknál. Fontosnak tartjuk a felhasználóink magánéletének védelmét és az átlátható adatkezelést.</p>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-database"></i> 2. Gyűjtött Adatok</h2>
+            <ul>
+                <li>Discord felhasználói azonosító</li>
+                <li>Szerver azonosítók</li>
+                <li>Parancshasználati előzmények</li>
+                <li>Bot beállítások és preferenciák</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-bullseye"></i> 3. Adatfelhasználás Célja</h2>
+            <p>Az adatokat kizárólag a következő célokra használjuk:</p>
+            <ul>
+                <li>A bot funkcióinak megfelelő működtetése</li>
+                <li>Felhasználói élmény személyre szabása</li>
+                <li>Technikai problémák elhárítása</li>
+                <li>Szolgáltatásaink fejlesztése</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-share-alt"></i> 4. Adatmegosztás</h2>
+            <p>Nem osztjuk meg, nem adjuk el és nem tesszük hozzáférhetővé a felhasználói adatokat harmadik fél számára. Az adatok kizárólag a bot működéséhez szükséges mértékben kerülnek felhasználásra.</p>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-shield-alt"></i> 5. Adatbiztonság</h2>
+            <p>Megfelelő technikai és szervezési intézkedéseket alkalmazunk az adatok védelmére. Rendszeresen felülvizsgáljuk és fejlesztjük biztonsági gyakorlatainkat.</p>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-user-shield"></i> 6. Felhasználói Jogok</h2>
+            <ul>
+                <li>Hozzáférés a tárolt adatokhoz</li>
+                <li>Adatok törlésének kérése</li>
+                <li>Adatkezelés korlátozásának kérése</li>
+                <li>Tiltakozás az adatkezelés ellen</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-envelope"></i> 7. Kapcsolat</h2>
+            <p>Adatvédelemmel kapcsolatos kérdésekkel vagy kérésekkel kapcsolatban közvetlenül Aronn-t (.aronn.) keresheted Discordon.</p>
+        </div>
+
+        <div class="footer">
+            <p>Utoljára frissítve: 2025.05.10.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('hu-HU', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        function createParticles() {
+            const particles = 15;
+            for (let i = 0; i < particles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 3 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                const duration = Math.random() * 10 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                document.body.appendChild(particle);
+            }
+        }
+        
+        window.addEventListener('load', createParticles);
+    </script>
+</body>
+</html>

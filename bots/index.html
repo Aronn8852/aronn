@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aronn Bots | Premium Discord Bots</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5865f2;
+            --primary-dark: #4752c4;
+            --secondary: #57f287;
+            --danger: #ed4245;
+            --warning: #faa61a;
+            --text-primary: #ffffff;
+            --text-secondary: #b9bbbe;
+            --bg-dark: #0f111a;
+            --bg-darker: #0a0c14;
+            --bg-card: rgba(30, 33, 43, 0.95);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(88, 101, 242, 0.15) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            padding: 20px;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: var(--transition);
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-3px);
+        }
+
+        .bots-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bots-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.2) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header h1 {
+            color: var(--text-primary);
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .buttons-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .bot-button {
+            padding: 25px;
+            border-radius: var(--border-radius);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            font-size: 18px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .bot-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .bot-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .bot-button:hover::before {
+            left: 100%;
+        }
+
+        .bot-button:active {
+            transform: translateY(2px);
+        }
+
+        .bot-button.primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4);
+        }
+
+        .bot-button.primary:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #3a45a8 100%);
+        }
+
+        .bot-button.secondary {
+            background: linear-gradient(135deg, #2b2d42 0%, #1a1c2c 100%);
+        }
+
+        .bot-button.secondary:hover {
+            background: linear-gradient(135deg, #1a1c2c 0%, #0f111a 100%);
+        }
+
+        .button-icon {
+            font-size: 40px;
+            transition: var(--transition);
+        }
+
+        .bot-button:hover .button-icon {
+            transform: scale(1.1);
+        }
+
+        .bot-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .particle {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float linear infinite;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .bots-card {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .header p {
+                font-size: 16px;
+            }
+
+            .buttons-container {
+                grid-template-columns: 1fr;
+            }
+
+            .bot-button {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .back-button {
+                top: 10px;
+                left: 10px;
+                font-size: 14px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .button-icon {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        <span>Vissza</span>
+    </a>
+    <div class="container">
+        <div class="bots-card">
+            <div class="header">
+                <h1>Aronn Bots</h1>
+                <p>Válassz az alábbi lehetőségek közül</p>
+            </div>
+            <div class="buttons-container">
+                <a href="terms-of-service" class="bot-button primary">
+                    <span class="button-icon">📜</span>
+                    <span>Szolgáltatási feltételek</span>
+                    <span class="bot-description">Botjaink használati feltételei</span>
+                </a>
+                <a href="privacy-policy" class="bot-button primary">
+                    <span class="button-icon">🔒</span>
+                    <span>Adatvédelmi szabályzat</span>
+                    <span class="bot-description">Hogyan kezeljük az adataidat</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createParticles() {
+            const particles = 15;
+            for (let i = 0; i < particles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 3 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                const duration = Math.random() * 10 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                document.body.appendChild(particle);
+            }
+        }
+        
+        window.addEventListener('load', createParticles);
+    </script>
+</body>
+</html>
